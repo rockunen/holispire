@@ -797,4 +797,30 @@ a.item-link {
   .single-post01 .comments .comment .text .name {
     font-size: 18px;
   }
+
+  /* Mobile navbar text black color */
+  .navbar-nav .nav-item a,
+  .navbar-nav .nav-link {
+    color: #000000 !important;
+  }
+
+  .navbar-nav .dropdown-toggle {
+    color: #000000 !important;
+  }
+
+  /* Mobile navbar styling - match contact us button for visibility */
+  .navbar-nav .nav-item a,
+  .navbar-nav .nav-link {
+    color: var(--e-global-color-accent) !important;
+    background-color: var(--e-global-color-soft-orange) !important;
+    padding: 8px 15px !important;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    display: block;
+  }
+
+  .navbar-nav .dropdown-toggle {
+    color: var(--e-global-color-accent) !important;
+    background-color: var(--e-global-color-soft-orange) !important;
+  }
 }
