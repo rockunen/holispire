@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="zxx">
+  <head>
+    <title>SPy Root Services - Dashboard</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"
+    />
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="57x57" href="apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="60x60" href="apple-icon-60x60.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="apple-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="apple-icon-76x76.png" />
+    <link
+      rel="apple-touch-icon"
+      sizes="114x114"
+      href="apple-icon-114x114.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="120x120"
+      href="apple-icon-120x120.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="144x144"
+      href="apple-icon-144x144.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="152x152"
+      href="apple-icon-152x152.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="apple-icon-180x180.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="android-icon-192x192.png"
+    />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+    <link rel="manifest" href="./../assetsfavicon/manifest.json" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
+    <meta name="theme-color" content="#ffffff" />
+    <link href="static/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="static/js/bootstrap.min.js" />
+    <link rel="stylesheet" href="static/css/all.min.css" />
+    <link href="static/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="static/css/mediaqueries.css" rel="stylesheet" type="text/css" />
+    <link href="static/css/custom-style.css" rel="stylesheet" type="text/css" />
+    <link
+      href="static/css/special-classes.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link href="static/css/aos.css" rel="stylesheet" />
+    <link rel="stylesheet" href="static/css/magnific-popup.css" />
+
+    <style>
+      .dashboard-container {
+        padding: 40px 0;
+        min-height: 100vh;
+      }
+
+      .dashboard-header {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 30px;
+        border-radius: 10px;
+        margin-bottom: 30px;
+        backdrop-filter: blur(10px);
+      }
+
+      .dashboard-header h2 {
+        color: white;
+        margin-bottom: 10px;
+      }
+
+      .dashboard-header p {
+        color: #e1ccad;
+        margin-bottom: 0;
+      }
+
+      .profile-card {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 30px;
+        border-radius: 10px;
+        margin-bottom: 30px;
+        backdrop-filter: blur(10px);
+      }
+
+      .profile-card h4 {
+        color: white;
+        margin-bottom: 20px;
+        font-weight: 600;
+      }
+
+      .profile-info {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+      }
+
+      .info-item {
+        padding: 15px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 5px;
+      }
+
+      .info-label {
+        color: #e1ccad;
+        font-weight: 500;
+        font-size: 12px;
+        text-transform: uppercase;
+        margin-bottom: 5px;
+      }
+
+      .info-value {
+        color: white;
+        font-size: 16px;
+      }
+
+      .registrations-section {
+        margin-top: 40px;
+      }
+
+      .registrations-section h3 {
+        color: white;
+        margin-bottom: 20px;
+        font-weight: 600;
+      }
+
+      .registration-card {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        border-left: 4px solid #e1ccad;
+        backdrop-filter: blur(10px);
+      }
+
+      .registration-card h5 {
+        color: white;
+        margin-bottom: 15px;
+      }
+
+      .registration-details {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+      }
+
+      .detail-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .detail-label {
+        color: #e1ccad;
+        font-weight: 500;
+      }
+
+      .detail-value {
+        color: white;
+      }
+
+      .status-badge {
+        display: inline-block;
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+
+      .status-pending {
+        background-color: #ffc107;
+        color: #000;
+      }
+
+      .status-completed {
+        background-color: #28a745;
+        color: white;
+      }
+
+      .status-cancelled {
+        background-color: #dc3545;
+        color: white;
+      }
+
+      .btn-logout {
+        background-color: #e1ccad !important;
+        color: #413625 !important;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s ease;
+      }
+
+      .btn-logout:hover {
+        background-color: white !important;
+        color: #764979 !important;
+        transform: translateY(-2px);
+      }
+
+      .empty-state {
+        text-align: center;
+        padding: 40px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
+      }
+
+      .empty-state i {
+        font-size: 48px;
+        color: #e1ccad;
+        margin-bottom: 20px;
+      }
+
+      .empty-state p {
+        color: white;
+        margin-bottom: 0;
+      }
+
+      .loader-spinner {
+        text-align: center;
+        padding: 40px;
+      }
+
+      .loader-spinner .spinner-border {
+        color: #e1ccad;
+      }
+
+      .alert {
+        border-radius: 5px;
+      }
+
+      @media (max-width: 768px) {
+        .profile-info {
+          grid-template-columns: 1fr;
+        }
+
+        .registration-details {
+          grid-template-columns: 1fr;
+        }
+
+        .dashboard-header {
+          padding: 20px;
+        }
+
+        .profile-card {
+          padding: 20px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="banner-section-outer">
+      <header>
+        <div class="main_header">
+          <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg navbar-light p-0">
+              <a class="navbar-brand head-logo" href="./index.html"
+                ><figure class="mb-0">
+                  <img src="yogastic_logo.png" alt="" /></figure
+              ></a>
+              <button
+                class="navbar-toggler collapsed"
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
+                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                  <li class="nav-item">
+                    <a class="nav-link" href="./index.html">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="./register.html">Register</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="btn-logout" href="#logout" onclick="logout()"
+                      >Logout</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </header>
+
+      <!-- DASHBOARD SECTION -->
+      <section class="dashboard-container">
+        <div class="container">
+          <!-- Alert Message -->
+          <div id="alertMessage" class="alert" style="display: none"></div>
+
+          <!-- Loading State -->
+          <div id="loadingState" class="loader-spinner" style="display: none">
+            <div class="spinner-border" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+            <p class="text-white mt-3">Loading your dashboard...</p>
+          </div>
+
+          <!-- Dashboard Content -->
+          <div id="dashboardContent" style="display: none">
+            <!-- Header -->
+            <div class="dashboard-header">
+              <h2>Welcome, <span id="userNameDisplay"></span>!</h2>
+              <p>Manage your yoga registrations and profile</p>
+            </div>
+
+            <!-- Profile Card -->
+            <div class="profile-card">
+              <h4>
+                <i class="fas fa-user-circle mr-2"></i>Profile Information
+              </h4>
+              <div class="profile-info">
+                <div class="info-item">
+                  <div class="info-label">First Name</div>
+                  <div class="info-value" id="profileFirstName"></div>
+                </div>
+                <div class="info-item">
+                  <div class="info-label">Last Name</div>
+                  <div class="info-value" id="profileLastName"></div>
+                </div>
+                <div class="info-item">
+                  <div class="info-label">Email</div>
+                  <div class="info-value" id="profileEmail"></div>
+                </div>
+                <div class="info-item">
+                  <div class="info-label">Mobile</div>
+                  <div class="info-value" id="profileMobile"></div>
+                </div>
+                <div class="info-item">
+                  <div class="info-label">Gender</div>
+                  <div class="info-value" id="profileGender"></div>
+                </div>
+                <div class="info-item">
+                  <div class="info-label">Member Since</div>
+                  <div class="info-value" id="profileCreatedAt"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Registrations Section -->
+            <div class="registrations-section">
+              <h3><i class="fas fa-book-reader mr-2"></i>Your Registrations</h3>
+              <div id="registrationsContainer"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <section class="footer-section" id="footer_section">
+      <div class="bottom-portion">
+        <div class="copyright col-xl-12">
+          <p>
+            Copyright 2024, Spy Root services. All Rights Reserved. Creation by
+            <a
+              href="https://www.balajiwebworld.com"
+              titile="Website Design Company in Aligarh"
+              >BALAJI</a
+            >
+          </p>
+        </div>
+      </div>
+      <div class="footer_shape right_shape">
+        <figure class="mb-0">
+          <img src="footer_shape.png" alt="" class="img-fluid" />
+        </figure>
+      </div>
+    </section>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="static/js/jquery-3.6.0.min.js"></script>
+    <script src="static/js/popper.min.js"></script>
+    <script src="static/js/video-popup.js"></script>
+    <script src="static/js/bootstrap.min.js"></script>
+    <script src="static/js/aos.js"></script>
+    <script src="static/js/video-section.js"></script>
+    <script src="static/js/animation.js"></script>
+    <script src="https://unpkg.com/ityped@0.0.10"></script>
+    <script src="static/js/type.js"></script>
+
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- Dashboard Script -->
+    <script src="static/js/supabase-config.js"></script>
+    <script src="static/js/dashboard.js"></script>
+  </body>
+</html>

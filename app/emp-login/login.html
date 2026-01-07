@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="zxx">
+  <head>
+    <title>SPy Root Services - Customer Login</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"
+    />
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="57x57" href="apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="60x60" href="apple-icon-60x60.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="apple-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="apple-icon-76x76.png" />
+    <link
+      rel="apple-touch-icon"
+      sizes="114x114"
+      href="apple-icon-114x114.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="120x120"
+      href="apple-icon-120x120.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="144x144"
+      href="apple-icon-144x144.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="152x152"
+      href="apple-icon-152x152.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="apple-icon-180x180.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="android-icon-192x192.png"
+    />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+    <link rel="manifest" href="./../assetsfavicon/manifest.json" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
+    <meta name="theme-color" content="#ffffff" />
+    <link href="static/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="static/js/bootstrap.min.js" />
+    <link rel="stylesheet" href="static/css/all.min.css" />
+    <link href="static/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="static/css/mediaqueries.css" rel="stylesheet" type="text/css" />
+    <link href="static/css/custom-style.css" rel="stylesheet" type="text/css" />
+    <link
+      href="static/css/special-classes.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link href="static/css/aos.css" rel="stylesheet" />
+    <link rel="stylesheet" href="static/css/magnific-popup.css" />
+
+    <style>
+      .s {
+        box-shadow: 0px 24px 28px 0px rgb(0 0 0 / 23%);
+      }
+
+      label {
+        color: white !important;
+      }
+
+      .left_icons {
+        height: 100%;
+      }
+
+      /* Login Page Styles */
+      .login-banner-section {
+        padding: 80px 0 100px;
+        position: relative;
+      }
+
+      .login-form-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 40px;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      .login-form-content {
+        flex: 1;
+        padding: 40px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
+        backdrop-filter: blur(10px);
+      }
+
+      .login-form-content h3 {
+        text-align: center;
+        color: white;
+        font-size: 36px;
+        margin-bottom: 30px;
+        font-family: "Playfair Display", serif;
+      }
+
+      .login-image {
+        flex: 1;
+        position: relative;
+        animation: float 6s ease-in-out infinite;
+      }
+
+      .login-image figure {
+        margin: 0;
+      }
+
+      .login-image figure img {
+        width: 100%;
+        max-width: 400px;
+        display: block;
+        border-radius: 10px;
+      }
+
+      .auth-form {
+        background: transparent;
+      }
+
+      .auth-form .form-group {
+        margin-bottom: 15px;
+      }
+
+      .auth-form label {
+        font-size: 16px;
+        font-weight: 500;
+        margin-bottom: 8px;
+        display: block;
+      }
+
+      .auth-form .form-control {
+        background-color: rgba(255, 255, 255, 0.95);
+        border: none;
+        padding: 12px 15px;
+        font-size: 14px;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+      }
+
+      .auth-form .form-control:focus {
+        background-color: white;
+        box-shadow: 0 0 0 0.2rem rgba(230, 200, 170, 0.25);
+        border: none;
+      }
+
+      .auth-form .form-control.is-invalid {
+        border-color: #dc3545;
+      }
+
+      .invalid-feedback {
+        color: #dc3545;
+        font-size: 12px;
+        display: block;
+        margin-top: 5px;
+      }
+
+      .btn-primary {
+        background-color: #e1ccad !important;
+        color: #413625 !important;
+        border: none;
+        padding: 12px 30px;
+        font-size: 16px;
+        font-weight: 500;
+        border-radius: 30px 0px 30px 0px;
+        transition: all 0.3s ease-in-out;
+        margin-top: 15px;
+        width: 100%;
+      }
+
+      .btn-primary:hover {
+        background-color: white !important;
+        color: #764979 !important;
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .btn-primary:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+
+      .alert {
+        border-radius: 5px;
+        margin-bottom: 20px;
+      }
+
+      .loader {
+        display: none;
+        border: 4px solid #f3f3f3;
+        border-top: 4px solid #e1ccad;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        animation: spin 1s linear infinite;
+        margin-right: 10px;
+        vertical-align: middle;
+      }
+
+      .loader.show {
+        display: inline-block;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes float {
+        0% {
+          box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
+          transform: translatex(0px);
+        }
+        50% {
+          box-shadow: 0 25px 15px 0px rgba(0, 0, 0, 0.2);
+          transform: translatex(-20px);
+        }
+        100% {
+          box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
+          transform: translatex(0px);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .login-form-wrapper {
+          flex-direction: column;
+          gap: 20px;
+        }
+
+        .login-form-content {
+          padding: 20px;
+        }
+
+        .login-form-content h3 {
+          font-size: 28px;
+        }
+
+        .login-image {
+          max-width: 300px;
+          margin: 0 auto;
+        }
+      }
+
+      .signup-link {
+        text-align: center;
+        margin-top: 20px;
+        color: white;
+      }
+
+      .signup-link a {
+        color: #e1ccad;
+        text-decoration: none;
+        font-weight: 500;
+      }
+
+      .signup-link a:hover {
+        text-decoration: underline;
+      }
+
+      .forgot-password {
+        text-align: right;
+        margin-top: 10px;
+      }
+
+      .forgot-password a {
+        color: #e1ccad;
+        text-decoration: none;
+        font-size: 14px;
+      }
+
+      .forgot-password a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="banner-section-outer">
+      <header>
+        <div class="main_header">
+          <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg navbar-light p-0">
+              <a class="navbar-brand head-logo" href="./index.html"
+                ><figure class="mb-0">
+                  <img src="yogastic_logo.png" alt="" /></figure
+              ></a>
+              <button
+                class="navbar-toggler collapsed"
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
+                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                  <li class="nav-item active">
+                    <a class="nav-link" href="./index.html">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="./index.html">About Us</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link contact_us" href="./index.html"
+                      >Contact Us</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </header>
+      <!-- SOCIAL ICONS -->
+      <div class="left_icons float-left d-table" data-aos="fade-down">
+        <div class="icon_content d-table-cell align-middle">
+          <ul class="list-unstyled p-0 m-0">
+            <li>
+              <a href="#"
+                ><i class="fa-brands fa-facebook-f" aria-hidden="true"></i
+              ></a>
+            </li>
+            <li>
+              <a href="#"
+                ><i class="fa-brands fa-twitter" aria-hidden="true"></i
+              ></a>
+            </li>
+            <li>
+              <a href="#"
+                ><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i
+              ></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- BANNER SECTION -->
+      <section class="banner-section login-banner-section pt-0">
+        <div class="container-fluid s">
+          <div class="row" data-aos="fade-up">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="banner-section-content pt-0 p-3">
+                <div class="login-form-wrapper">
+                  <div class="login-form-content">
+                    <h3>Customer Login</h3>
+
+                    <!-- Alert Messages -->
+                    <div
+                      id="alertMessage"
+                      class="alert"
+                      style="display: none"
+                    ></div>
+
+                    <form id="loginForm" class="auth-form my-4">
+                      <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input
+                          type="email"
+                          class="form-control"
+                          name="email"
+                          id="email"
+                          placeholder="Enter Your Email"
+                          required
+                        />
+                        <div class="invalid-feedback" id="emailError"></div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="password">Password *</label>
+                        <input
+                          type="password"
+                          class="form-control"
+                          name="password"
+                          id="password"
+                          placeholder="Enter Your Password"
+                          required
+                        />
+                        <div class="invalid-feedback" id="passwordError"></div>
+                      </div>
+
+                      <div class="forgot-password">
+                        <a href="#forgotPassword" data-toggle="modal"
+                          >Forgot Password?</a
+                        >
+                      </div>
+
+                      <div class="form-group mb-0 row">
+                        <div class="col-12 mt-2">
+                          <button
+                            class="btn btn-primary btn-block"
+                            type="submit"
+                            name="submit"
+                            id="submitBtn"
+                          >
+                            <span class="loader" id="loader"></span>
+                            Login <i class="fas fa-sign-in-alt ml-1"></i>
+                          </button>
+                        </div>
+                      </div>
+
+                      <div class="signup-link">
+                        <p>
+                          Don't have an account?
+                          <a href="./register.html">Register here</a>
+                        </p>
+                      </div>
+                    </form>
+                  </div>
+
+                  <div class="login-image">
+                    <figure class="mb-0">
+                      <img
+                        src="banner_right_image.png"
+                        alt="Yoga Login"
+                        class="img-fluid"
+                      />
+                    </figure>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <figure class="banner_left_top_shape left_shape mb-0">
+            <img src="banner_left_top_shape.png" alt="" class="img-fluid" />
+          </figure>
+          <figure class="banner_left_bottom_shape left_shape mb-0">
+            <img src="banner_left_bottom_shape.png" alt="" class="img-fluid" />
+          </figure>
+          <figure class="banner_right_top_shape right_shape mb-0">
+            <img src="banner_right_top_shape.png" alt="" class="img-fluid" />
+          </figure>
+          <figure class="banner_right_bottom_shape right_shape mb-0">
+            <img src="banner_right_bottom_shape.png" alt="" class="img-fluid" />
+          </figure>
+        </div>
+      </section>
+    </div>
+
+    <section class="footer-section" id="footer_section">
+      <div class="bottom-portion">
+        <div class="copyright col-xl-12">
+          <p>
+            Copyright 2024, Spy Root services. All Rights Reserved. Creation by
+            <a
+              href="https://www.balajiwebworld.com"
+              titile="Website Design Company in Aligarh"
+              >BALAJI</a
+            >
+          </p>
+        </div>
+      </div>
+      <div class="footer_shape right_shape">
+        <figure class="mb-0">
+          <img src="footer_shape.png" alt="" class="img-fluid" />
+        </figure>
+      </div>
+    </section>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="static/js/jquery-3.6.0.min.js"></script>
+    <script src="static/js/popper.min.js"></script>
+    <script src="static/js/video-popup.js"></script>
+    <script src="static/js/bootstrap.min.js"></script>
+    <script src="static/js/aos.js"></script>
+    <script src="static/js/video-section.js"></script>
+    <script src="static/js/animation.js"></script>
+    <script src="https://unpkg.com/ityped@0.0.10"></script>
+    <script src="static/js/type.js"></script>
+
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- Login Script -->
+    <script src="static/js/supabase-config.js"></script>
+    <script src="static/js/login.js"></script>
+  </body>
+</html>
