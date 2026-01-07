@@ -262,9 +262,9 @@ document.addEventListener("DOMContentLoaded", function () {
       key: "rzp_live_uVevAW2TsQGKYJ", // Replace with your Razorpay key
       amount: amount * 100, // Amount in paise
       currency: "INR",
-      name: "Spy Root Services",
+      name: "HoliSpire",
       description: "Yoga Class Registration",
-      image: ".yogastic_logo.png",
+      image: ".logo2.png",
       handler: async function (response) {
         try {
           // Payment successful, update registration status

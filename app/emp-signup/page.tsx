@@ -192,7 +192,7 @@ export default function EmployeeSignup() {
               <nav className="navbar navbar-expand-lg navbar-light p-0">
                 <Link className="navbar-brand head-logo" href="/">
                   <figure className="mb-0">
-                    <img src="/logo.png" alt="SPy Root" />
+                    <img src="/logo2.png" alt="SPy Root" />
                   </figure>
                 </Link>
                 <button

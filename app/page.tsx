@@ -74,7 +74,7 @@ export default function Home() {
               <nav className="navbar navbar-expand-lg navbar-light p-0">
                 <Link className="navbar-brand head-logo" href="/">
                   <figure className="mb-0">
-                    <img src="/yogastic_logo.png" alt="" />
+                    <img src="/logo2.png" alt="" />
                   </figure>
                 </Link>
                 <button
@@ -431,9 +431,9 @@ export default function Home() {
                 <h5>Our Services</h5>
                 <h2>Practice Whereever You Want Whenever You Need</h2>
                 <p>
-                  At Spy Root Services, we are passionate about empowering
-                  people to unlock their full potential through the
-                  transformative practices of yoga, meditation and zumba.
+                  At HoliSpire, we are passionate about empowering people to
+                  unlock their full potential through the transformative
+                  practices of yoga, meditation and zumba.
                 </p>
               </div>
             </div>
@@ -587,7 +587,7 @@ export default function Home() {
                 <div className="aboutus_line_wrapper">
                   <h6>
                     Experience the Joy of Movement, Breath and Awareness with
-                    Spy Root Services.
+                    HoliSpire.
                   </h6>
                   <figure className="mb-0 purple_line">
                     <img src="/aboutus_line.png" alt="" className="img-fluid" />
@@ -616,9 +616,8 @@ export default function Home() {
                 <h5>Our Specialties</h5>
                 <h2>Why Choose Us</h2>
                 <p>
-                  At Spy Root Services, we don't just provide great yoga,
-                  meditation and zumba classes - we create life-changing
-                  experiences.
+                  At HoliSpire, we don't just provide great yoga, meditation and
+                  zumba classes - we create life-changing experiences.
                 </p>
               </div>
             </div>
@@ -1082,13 +1081,13 @@ export default function Home() {
                     <div className="testimonial_content">
                       <i className="fa-solid fa-quote-left"></i>
                       <p className="testimonial_paragraph">
-                        "I started practicing yoga at Spy Root Services last
-                        year and it has transformed my life. The teachers are so
-                        supportive and I've gained both physical strength and
-                        mental clarity. I'm calmer, more energized and feel
-                        better about myself than ever before. I'd recommend
-                        these classes to anyone looking to improve their health
-                        and happiness."
+                        "I started practicing yoga at HoliSpire last year and it
+                        has transformed my life. The teachers are so supportive
+                        and I've gained both physical strength and mental
+                        clarity. I'm calmer, more energized and feel better
+                        about myself than ever before. I'd recommend these
+                        classes to anyone looking to improve their health and
+                        happiness."
                       </p>
                       <figure>
                         <img
@@ -1107,10 +1106,10 @@ export default function Home() {
                       <p className="testimonial_paragraph">
                         "As a busy working mom, I was completely stressed out.
                         But after just 2 weeks of yoga and meditation classes at
-                        Spy Root Services, I felt like a new person! I'm
-                        sleeping better, have more patience with my kids, and
-                        feel much more resilient during hectic days. The studio
-                        has a warm, welcoming atmosphere too."
+                        HoliSpire, I felt like a new person! I'm sleeping
+                        better, have more patience with my kids, and feel much
+                        more resilient during hectic days. The studio has a
+                        warm, welcoming atmosphere too."
                       </p>
                       <figure>
                         <img
@@ -1172,8 +1171,8 @@ export default function Home() {
                   <Link href="/">
                     <figure className="mb-0">
                       <img
-                        src="/logo.png"
-                        alt="Spy Root Services"
+                        src="/logo2.png"
+                        alt="HoliSpire"
                         className="img-fluid"
                       />
                     </figure>
@@ -1186,8 +1185,8 @@ export default function Home() {
                   <ul className="list-unstyled">
                     <li>
                       <p>
-                        At Spy Root Services, we are passionate about empowering
-                        people to unlock their full potential through the
+                        At HoliSpire, we are passionate about empowering people
+                        to unlock their full potential through the
                         transformative practices of yoga, meditation and zumba.
                       </p>
                     </li>
@@ -1250,7 +1249,7 @@ export default function Home() {
         </div>
         <div className="bottom-portion">
           <div className="copyright col-xl-12">
-            <p>Copyright 2024, Spy Root services. All Rights Reserved.</p>
+            <p>Copyright 2024, HoliSpire. All Rights Reserved.</p>
           </div>
         </div>
         <div className="footer_shape right_shape">

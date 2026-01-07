@@ -8,7 +8,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "SPy Root Services",
+  title: "HoliSpire",
   description: "Your wellness and spiritual healing platform",
 };
 

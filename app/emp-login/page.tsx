@@ -6,9 +6,8 @@ import Image from "next/image";
 
 export default function EmployeeLogin() {
   const [formData, setFormData] = useState({
-    emailOrId: "",
+    email: "",
     password: "",
-    rememberMe: false,
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [fieldTouched, setFieldTouched] = useState<Record<string, boolean>>({});
@@ -16,60 +15,12 @@ export default function EmployeeLogin() {
   const [alertType, setAlertType] = useState<"success" | "danger">("success");
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [loginAttempts, setLoginAttempts] = useState(0);
-  const [isLocked, setIsLocked] = useState(false);
-  const [lockoutTime, setLockoutTime] = useState<number | null>(null);
-
-  // Initialize from localStorage
-  useEffect(() => {
-    const savedEmail = localStorage.getItem("empRememberedEmail");
-    const savedRememberMe = localStorage.getItem("empRememberMe") === "true";
-    if (savedEmail && savedRememberMe) {
-      setFormData((prev) => ({
-        ...prev,
-        emailOrId: savedEmail,
-        rememberMe: true,
-      }));
-    }
-
-    // Check for lockout status
-    const lockoutData = localStorage.getItem("empLoginLockout");
-    if (lockoutData) {
-      const { timestamp, attempts } = JSON.parse(lockoutData);
-      const elapsedTime = Date.now() - timestamp;
-      const lockoutDuration = 15 * 60 * 1000; // 15 minutes
-      if (elapsedTime < lockoutDuration) {
-        setIsLocked(true);
-        setLoginAttempts(attempts);
-        setLockoutTime(Math.ceil((lockoutDuration - elapsedTime) / 1000));
-      } else {
-        localStorage.removeItem("empLoginLockout");
-      }
-    }
-  }, []);
-
-  // Lockout timer
-  useEffect(() => {
-    if (!isLocked || lockoutTime === null) return;
-    if (lockoutTime <= 0) {
-      setIsLocked(false);
-      setLoginAttempts(0);
-      localStorage.removeItem("empLoginLockout");
-      return;
-    }
-
-    const timer = setTimeout(
-      () => setLockoutTime((prev) => (prev ? prev - 1 : null)),
-      1000
-    );
-    return () => clearTimeout(timer);
-  }, [isLocked, lockoutTime]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, type, checked, value } = e.target;
+    const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: type === "checkbox" ? checked : value,
+      [name]: value,
     }));
 
     // Clear error when user starts typing
@@ -87,22 +38,27 @@ export default function EmployeeLogin() {
     validateField(name, formData[name as keyof typeof formData]);
   };
 
+  const validateEmail = (email: string): boolean => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
   const validateField = (name: string, value: any): boolean => {
     const newErrors = { ...errors };
 
-    if (name === "emailOrId") {
+    if (name === "email") {
       if (!value?.trim()) {
-        newErrors.emailOrId = "Email or Employee ID is required";
-      } else if (value.length < 3) {
-        newErrors.emailOrId = "Email or ID must be at least 3 characters";
+        newErrors.email = "Email is required";
+      } else if (!validateEmail(value)) {
+        newErrors.email = "Please enter a valid email address";
       } else {
-        delete newErrors.emailOrId;
+        delete newErrors.email;
       }
     } else if (name === "password") {
       if (!value) {
         newErrors.password = "Password is required";
-      } else if (value.length < 6) {
-        newErrors.password = "Password must be at least 6 characters";
+      } else if (value.length < 8) {
+        newErrors.password = "Password must be at least 8 characters";
       } else {
         delete newErrors.password;
       }
@@ -115,16 +71,16 @@ export default function EmployeeLogin() {
   const validateForm = (): boolean => {
     const newErrors: Record<string, string> = {};
 
-    if (!formData.emailOrId?.trim()) {
-      newErrors.emailOrId = "Email or Employee ID is required";
-    } else if (formData.emailOrId.length < 3) {
-      newErrors.emailOrId = "Email or ID must be at least 3 characters";
+    if (!formData.email?.trim()) {
+      newErrors.email = "Email is required";
+    } else if (!validateEmail(formData.email)) {
+      newErrors.email = "Please enter a valid email address";
     }
 
     if (!formData.password) {
       newErrors.password = "Password is required";
-    } else if (formData.password.length < 6) {
-      newErrors.password = "Password must be at least 6 characters";
+    } else if (formData.password.length < 8) {
+      newErrors.password = "Password must be at least 8 characters";
     }
 
     setErrors(newErrors);
@@ -133,14 +89,6 @@ export default function EmployeeLogin() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    if (isLocked) {
-      setAlertMessage(
-        `Account locked. Please try again in ${lockoutTime} seconds.`
-      );
-      setAlertType("danger");
-      return;
-    }
 
     if (!validateForm()) return;
 
@@ -154,28 +102,14 @@ export default function EmployeeLogin() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          employeeId: formData.emailOrId,
+          email: formData.email,
           password: formData.password,
-          rememberMe: formData.rememberMe,
         }),
       });
 
       const data = await response.json();
 
       if (response.ok) {
-        // Clear previous login attempts
-        localStorage.removeItem("empLoginLockout");
-        setLoginAttempts(0);
-
-        // Save remember me preference
-        if (formData.rememberMe) {
-          localStorage.setItem("empRememberedEmail", formData.emailOrId);
-          localStorage.setItem("empRememberMe", "true");
-        } else {
-          localStorage.removeItem("empRememberedEmail");
-          localStorage.setItem("empRememberMe", "false");
-        }
-
         setAlertMessage("Login successful! Redirecting...");
         setAlertType("success");
         localStorage.setItem("empToken", data.token);
@@ -185,37 +119,12 @@ export default function EmployeeLogin() {
           window.location.href = "/emp-dashboard";
         }, 1500);
       } else {
-        // Handle rate limiting
-        if (response.status === 429) {
-          const newAttempts = loginAttempts + 1;
-          localStorage.setItem(
-            "empLoginLockout",
-            JSON.stringify({ timestamp: Date.now(), attempts: newAttempts })
-          );
-          setIsLocked(true);
-          setLoginAttempts(newAttempts);
-          setLockoutTime(15 * 60);
-          setAlertMessage(
-            "Too many failed attempts. Account locked for 15 minutes."
-          );
-        } else {
-          const newAttempts = loginAttempts + 1;
-          setLoginAttempts(newAttempts);
-          if (newAttempts >= 3) {
-            setAlertMessage(
-              `${data.message || "Login failed"} (${
-                5 - newAttempts
-              } attempts remaining)`
-            );
-          } else {
-            setAlertMessage(data.message || "Login failed. Please try again.");
-          }
-        }
+        setAlertMessage(data.message || "Login failed. Please try again.");
         setAlertType("danger");
       }
     } catch (error) {
       console.error("Login error:", error);
-      setAlertMessage("An error occurred. Please try again.");
+      setAlertMessage("An error occurred during login. Please try again.");
       setAlertType("danger");
     } finally {
       setLoading(false);
@@ -231,7 +140,7 @@ export default function EmployeeLogin() {
               <nav className="navbar navbar-expand-lg navbar-light p-0">
                 <Link className="navbar-brand head-logo" href="/">
                   <figure className="mb-0">
-                    <img src="/logo.png" alt="SPy Root" />
+                    <img src="/logo2.png" alt="SPy Root" />
                   </figure>
                 </Link>
                 <button
@@ -314,9 +223,9 @@ export default function EmployeeLogin() {
                   <div className="login-form-wrapper">
                     <div className="login-form-content">
                       <div className="form-header">
-                        <h3>Employee Portal</h3>
+                        <h3>Employee Login</h3>
                         <p className="form-subtitle">
-                          Sign in with your employee credentials
+                          Sign in to your employee portal account
                         </p>
                       </div>
 
@@ -342,44 +251,32 @@ export default function EmployeeLogin() {
                         </div>
                       )}
 
-                      {isLocked && (
-                        <div
-                          className="alert alert-warning alert-dismissible fade show"
-                          role="alert"
-                        >
-                          <i className="fas fa-lock me-2"></i>
-                          Account temporarily locked. Remaining time:{" "}
-                          <strong>{lockoutTime}s</strong>
-                        </div>
-                      )}
-
                       <form className="auth-form my-4" onSubmit={handleSubmit}>
                         <div className="form-group">
-                          <label htmlFor="emailOrId">
-                            <i className="fas fa-envelope me-2"></i>Email or
-                            Employee ID
+                          <label htmlFor="email">
+                            <i className="fas fa-envelope me-2"></i>Email
+                            Address
                           </label>
                           <input
-                            type="text"
+                            type="email"
                             className={`form-control ${
-                              fieldTouched.emailOrId && errors.emailOrId
+                              fieldTouched.email && errors.email
                                 ? "is-invalid"
                                 : ""
                             }`}
-                            name="emailOrId"
-                            id="emailOrId"
-                            placeholder="Enter your email or employee ID"
-                            value={formData.emailOrId}
+                            name="email"
+                            id="email"
+                            placeholder="Enter your email"
+                            value={formData.email}
                             onChange={handleChange}
                             onBlur={handleBlur}
-                            disabled={isLocked}
-                            autoComplete="username"
+                            autoComplete="email"
                             required
                           />
-                          {fieldTouched.emailOrId && errors.emailOrId && (
+                          {fieldTouched.email && errors.email && (
                             <div className="invalid-feedback d-block">
                               <i className="fas fa-exclamation-circle me-1"></i>
-                              {errors.emailOrId}
+                              {errors.email}
                             </div>
                           )}
                         </div>
@@ -402,7 +299,6 @@ export default function EmployeeLogin() {
                               value={formData.password}
                               onChange={handleChange}
                               onBlur={handleBlur}
-                              disabled={isLocked}
                               autoComplete="current-password"
                               required
                             />
@@ -410,7 +306,6 @@ export default function EmployeeLogin() {
                               type="button"
                               className="toggle-password-btn"
                               onClick={() => setShowPassword(!showPassword)}
-                              disabled={isLocked}
                             >
                               <i
                                 className={`fas ${
@@ -427,36 +322,12 @@ export default function EmployeeLogin() {
                           )}
                         </div>
 
-                        <div className="form-check forgot-password-wrapper">
-                          <input
-                            className="form-check-input"
-                            type="checkbox"
-                            id="rememberMe"
-                            name="rememberMe"
-                            checked={formData.rememberMe}
-                            onChange={handleChange}
-                            disabled={isLocked}
-                          />
-                          <label
-                            className="form-check-label"
-                            htmlFor="rememberMe"
-                          >
-                            Remember me
-                          </label>
-                          <Link
-                            href="/emp-forgot-password"
-                            className="ms-auto forgot-link"
-                          >
-                            Forgot Password?
-                          </Link>
-                        </div>
-
-                        <div className="form-group mb-0 row">
-                          <div className="col-12 mt-3">
+                        <div className="form-group mb-0 row mt-4">
+                          <div className="col-12">
                             <button
                               className="btn btn-primary btn-block w-100"
                               type="submit"
-                              disabled={loading || isLocked}
+                              disabled={loading}
                             >
                               {loading && (
                                 <span className="spinner-border spinner-border-sm me-2"></span>
@@ -634,34 +505,6 @@ export default function EmployeeLogin() {
           opacity: 0.5;
         }
 
-        .forgot-password-wrapper {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          margin: 15px 0 20px;
-          gap: 10px;
-        }
-
-        .forgot-password-wrapper label {
-          color: white !important;
-          margin: 0;
-          font-size: 14px;
-          cursor: pointer;
-        }
-
-        .forgot-link {
-          color: #e1ccad;
-          text-decoration: none;
-          font-weight: 500;
-          font-size: 14px;
-          transition: all 0.3s ease;
-        }
-
-        .forgot-link:hover {
-          text-decoration: underline;
-          color: #f5dcc0;
-        }
-
         .signup-link {
           text-align: center;
           margin-top: 20px;
@@ -747,15 +590,6 @@ export default function EmployeeLogin() {
         @media (max-width: 768px) {
           .form-header h3 {
             font-size: 32px;
-          }
-
-          .forgot-password-wrapper {
-            flex-direction: column;
-            align-items: flex-start;
-          }
-
-          .forgot-link {
-            align-self: flex-end;
           }
         }
       `}</style>
