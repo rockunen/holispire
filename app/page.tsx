@@ -369,7 +369,7 @@ export default function Home() {
                     Start Healing Your Mind, <span className="ityped"></span>
                   </h1>
                   <p data-aos="fade-right">
-                    Discover Your Inner Strength and Vitality at Spy Root
+                    Discover Your Inner Strength and Vitality at HoliSpire
                     Services.
                   </p>
                   <div className="btn_wrapper" data-aos="fade-up">
@@ -734,7 +734,7 @@ export default function Home() {
             <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
               <div className="get_in_touch_content">
                 <h2>How it works?</h2>
-                <h5>Once you've enrolled, Spyroot services -</h5>
+                <h5>Once you've enrolled, HoliSpire services -</h5>
                 <ul>
                   <li className="pt-4">
                     1. Personalized classes specific to your health goals and
@@ -1222,24 +1222,24 @@ export default function Home() {
                     <li className="contact_icons">
                       <i className="fa-solid fa-phone"></i>
                       <a
-                        href="tel:+918929920556"
+                        href="tel:+91XXXXXXXXX"
                         className="text-decoration-none"
                       >
-                        +91 8929920556
+                        +91 XXXXXXXXX
                       </a>
                     </li>
                     <li className="contact_icons">
                       <i className="fa-sharp fa-solid fa-envelope"></i>
                       <a
-                        href="mailto:Info@spyrootservices.com"
+                        href="mailto:Info@holispire.in"
                         className="text-decoration-none"
                       >
-                        Info@spyrootservices.com
+                        Info@holispire.in
                       </a>
                     </li>
                     <li className="mb-0">
                       <i className="fa-solid fa-location-dot location"></i>
-                      <span>G – block, Sector-63, Noida- 201301</span>
+                      <span>XXXXXX, XXXX</span>
                     </li>
                   </ul>
                 </div>
