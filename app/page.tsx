@@ -1225,21 +1225,24 @@ export default function Home() {
                         href="tel:+91XXXXXXXXX"
                         className="text-decoration-none"
                       >
-                        +91 XXXXXXXXX
+                        +91 8130500618
                       </a>
                     </li>
                     <li className="contact_icons">
                       <i className="fa-sharp fa-solid fa-envelope"></i>
                       <a
-                        href="mailto:Info@holispire.in"
+                        href="mailto:hrmanagement@holispire.in"
                         className="text-decoration-none"
                       >
-                        Info@holispire.in
+                        hrmanagement@holispire.in
                       </a>
                     </li>
                     <li className="mb-0">
                       <i className="fa-solid fa-location-dot location"></i>
-                      <span>XXXXXX, XXXX</span>
+                      <span>
+                        {" "}
+                        F-97 Block E, katwaria sarai ,New Delhi,110016
+                      </span>
                     </li>
                   </ul>
                 </div>

@@ -1,5 +1,5 @@
 window.ityped.init(document.querySelector(".ityped"), {
-  strings: [Body & Soul],
+  strings: [],
   typeSpeed: 100,
   backSpeed: 100,
   startDelay: 500,
