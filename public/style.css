@@ -94,6 +94,7 @@ p {
 }
 .main_header {
   padding: 20px 90px 0;
+  margin: 0;
 }
 .navbar-collapse ul {
   text-align: center;
@@ -397,6 +398,14 @@ p {
   position: absolute;
   bottom: 80px;
   right: 0;
+}
+
+.bannerimage {
+  -webkit-animation: mover 1s infinite alternate;
+  animation: mover 1s infinite alternate;
+  width: 50%;
+  height: auto;
+  border-radius: 150px 0px 150px 0px;
 }
 .right_shape img {
   -webkit-animation: mover 1s infinite alternate;
@@ -772,7 +781,7 @@ p {
   z-index: 0;
 }
 .get_in_touch_section::after {
-  background: url("get_in_touch_image.jpg");
+  background: url("get_in_touch_image1.jpg");
   content: "";
   width: 50%;
   height: 806px;
@@ -2230,4 +2239,11 @@ textarea {
 }
 .single-post .single-post-heading {
   font-size: 30px !important;
+}
+
+.testimonial_image {
+  border-radius: 100%;
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
 }

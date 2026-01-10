@@ -385,7 +385,11 @@ export default function Home() {
               <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div className="banner-section-image">
                   <figure className="mb-0">
-                    <img src="/banner_right_image.png" alt="" />
+                    <img
+                      className="bannerimage"
+                      src="/banner_right_image.png"
+                      alt=""
+                    />
                   </figure>
                 </div>
               </div>
@@ -1093,10 +1097,12 @@ export default function Home() {
                         <img
                           src="/testimonial_image.png"
                           alt=""
-                          className="img-fluid"
+                          className="img-fluid testimonial_image"
                         />
                       </figure>
-                      <p className="testimonial_person_name">Himala Joerge</p>
+                      <p className="testimonial_person_name">
+                        Hannah Schneider
+                      </p>
                       <span>Happy client</span>
                     </div>
                   </div>
@@ -1115,7 +1121,7 @@ export default function Home() {
                         <img
                           src="/testimonial_image.png"
                           alt=""
-                          className="img-fluid"
+                          className="img-fluid testimonial_image"
                         />
                       </figure>
                       <p className="testimonial_person_name">Padmini Rangrez</p>
@@ -1225,7 +1231,7 @@ export default function Home() {
                         href="tel:+91XXXXXXXXX"
                         className="text-decoration-none"
                       >
-                        +91 8130500618
+                        +91 9217432112
                       </a>
                     </li>
                     <li className="contact_icons">
@@ -1241,8 +1247,11 @@ export default function Home() {
                       <i className="fa-solid fa-location-dot location"></i>
                       <span>
                         {" "}
-                        F-97 Block E, katwaria sarai ,New Delhi,110016
+                        F-97 Block E, katwaria sarai, New Delhi,110016
                       </span>
+                    </li>
+                    <li className="mb-0">
+                      <span> LLPIN: ACJ-6221</span>
                     </li>
                   </ul>
                 </div>

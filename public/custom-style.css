@@ -816,11 +816,19 @@ a.item-link {
     padding: 8px 15px !important;
     border-radius: 5px;
     margin-bottom: 5px;
-    display: block;
+    margin-top: 0 !important;
+    display: inline-block !important;
   }
 
   .navbar-nav .dropdown-toggle {
     color: var(--e-global-color-accent) !important;
     background-color: var(--e-global-color-soft-orange) !important;
+    margin-top: 0 !important;
   }
+}
+
+/* Lotus style rounded corners for img-fluid */
+.img-fluid {
+  border-radius: 120px 0px 120px 0px;
+  overflow: hidden;
 }

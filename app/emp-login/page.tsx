@@ -177,7 +177,7 @@ export default function EmployeeLogin() {
                       </Link>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link contact_us" href="/">
+                      <a className="nav-link contact_us" href="">
                         Contact Us
                       </a>
                     </li>
