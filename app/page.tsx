@@ -69,12 +69,7 @@ export default function Home() {
       {/* NAVBAR SECTION */}
       <div className="banner-section-outer">
         <header>
-          <div
-            className="main_header"
-            style={{
-              background: "linear-gradient(135deg, #764979 0%, #543458 100%)",
-            }}
-          >
+          <div className="main_header">
             <div className="container-fluid">
               <nav className="navbar navbar-expand-lg navbar-light p-0">
                 <Link className="navbar-brand head-logo" href="/">
