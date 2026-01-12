@@ -477,10 +477,10 @@ export default function About() {
                     <li className="contact_icons">
                       <i className="fa-solid fa-phone"></i>
                       <a
-                        href="tel:+919217432112"
+                        href="tel:+918130500618"
                         className="text-decoration-none"
                       >
-                        +91 9217432112
+                        +91 8130500618
                       </a>
                     </li>
                     <li className="contact_icons">
